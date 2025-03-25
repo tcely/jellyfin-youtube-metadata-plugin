@@ -48,7 +48,7 @@ jobs:
       id: create_package
       shell: bash
       run: |
-        tag=$(git describe --tags --always)
+        tag=$(git describe --tags)
         release_name="YoutubeMetadata-$tag"
 
         # Pack files
