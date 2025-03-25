@@ -67,9 +67,9 @@ jobs:
 
         JPRM='python3 -m jprm'
         set -x
-        meta_version="$(grep -Po '^ *version: * "*\K[^"$]+' ./build.yaml)"
+        #meta_version="$(grep -Po '^ *version: * "*\K[^"$]+' ./build.yaml)"
         find . -name project.assets.json -exec rm -v '{}' +
-        zipfile="$($JPRM --verbosity=debug plugin build . --output='.' --version="${meta_version}")"
+        zipfile="$($JPRM --verbosity=debug plugin build . --output='.')"
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
