@@ -15,7 +15,7 @@ def md5(file_path):
     with file_path.open('rb') as f:
         data = f.read(buffer_size)
         while len(data) > 0:
-		    hasher.update(data)
+            hasher.update(data)
             data = f.read(buffer_size)
 
     return hasher.hexdigest()
