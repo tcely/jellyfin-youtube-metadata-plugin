@@ -83,14 +83,13 @@ jobs:
       run: |
         python3 md5sum.py *.zip | tee MD5SUMS
 
-    - uses: "marvinpinto/action-automatic-releases@latest"
+    - uses: softprops/action-gh-release@v2
       if: ${{ 'Linux' == runner.os }}
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        title: "${{ steps.create_package.outputs.release_tag }}"
-        automatic_release_tag: "${{ steps.create_package.outputs.release_tag }}"
+        #repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        #title: "${{ steps.create_package.outputs.release_tag }}"
+        #automatic_release_tag: "${{ steps.create_package.outputs.release_tag }}"
         prerelease: true
-          #          "${{ steps.create_package.outputs.filename }}"
         files: |
           MD5SUMS
           *.zip
