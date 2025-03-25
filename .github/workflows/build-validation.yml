@@ -58,13 +58,11 @@ jobs:
           'release_tag' "${tag}" \
           'filename' "${release_name}.zip"
 
-    - name: jprm-build
-      uses: oddstr13/jellyfin-plugin-repository-manager@v1.1.1
-  
     - name: Plugin
       shell: bash
       run: |
         command -v pip
+        pip install --user git+https://github.com/oddstr13/jellyfin-plugin-repository-manager
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
