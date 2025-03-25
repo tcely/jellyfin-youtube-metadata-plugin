@@ -22,7 +22,7 @@ def md5(file_path):
 
 
 def main(args):
-	for arg in args[1:]:
+    for arg in args[1:]:
         path = pathlib.Path(arg)
 		if path.is_file():
             file = path.resolve(strict=True)
