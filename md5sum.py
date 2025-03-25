@@ -8,7 +8,7 @@ import sys
 
 
 def md5(file_path):
-	hasher = hashlib.md5()
+    hasher = hashlib.md5()
     file_path = pathlib.Path(file_path)
 
     buffer_size = io.DEFAULT_BUFFER_SIZE
