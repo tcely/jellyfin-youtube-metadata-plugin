@@ -53,28 +53,35 @@ jobs:
 
         # Pack files
         7z a -tzip "${release_name}.zip" "./bin/*"
+
+        # Set outputs
         printf -- '%s=%s\n' >> "${GITHUB_OUTPUT}" \
           'release_name' "${release_name}" \
           'release_tag' "${tag}" \
+          'filepath' "${PWD}/${release_name}.zip" \
           'filename' "${release_name}.zip"
 
     - name: Build plugin zip with `jprm`
+      id: create_plugin
       shell: bash
       run: |
         command -v pip
         pip install --user git+https://github.com/oddstr13/jellyfin-plugin-repository-manager
         declare -p PATH
-
-        JPRM='python3 -m jprm'
         set -x
-        #meta_version="$(grep -Po '^ *version: * "*\K[^"$]+' ./build.yaml)"
+
         find . -name project.assets.json -exec rm -v '{}' +
-        zipfile="$($JPRM --verbosity=debug plugin build . --output='.')"
+        _file="$(python3 -m jprm --verbosity=debug plugin build . --output='.')"
+
+        # Set outputs
+        printf -- '%s=%s\n' >> "${GITHUB_OUTPUT}" \
+          'filepath' "${PWD}/${_file#./}" \
+          'filename' "${_file#./}"
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        name: "${{ steps.create_package.outputs.release_tag }}"
+        title: "${{ steps.create_package.outputs.release_tag }}"
         automatic_release_tag: "${{ steps.create_package.outputs.release_tag }}"
         prerelease: true
           #          "${{ steps.create_package.outputs.filename }}"
