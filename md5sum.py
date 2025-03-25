@@ -24,11 +24,11 @@ def md5(file_path):
 def main(args):
     for arg in args[1:]:
         path = pathlib.Path(arg)
-		if path.is_file():
+        if path.is_file():
             file = path.resolve(strict=True)
             digest = md5(path)
             line = f'{digest} *{file}'
-			print(line, flush=True)
+            print(line, flush=True)
 
 
 if '__main__' == __name__:
