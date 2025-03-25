@@ -65,7 +65,8 @@ jobs:
         pip install --user git+https://github.com/oddstr13/jellyfin-plugin-repository-manager
         declare -p PATH
 
-        JPRM='python3 -m jprm' 
+        JPRM='python3 -m jprm'
+        set -x
         meta_version="$(grep -Po '^ *version: * "*\K[^"$]+' ./build.yaml)"
         find . -name project.assets.json -exec rm -v '{}' +
         zipfile="$($JPRM --verbosity=debug plugin build . --output='.' --version="${meta_version}")"
