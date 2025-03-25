@@ -57,6 +57,11 @@ jobs:
           'release_tag' "${tag}" \
           'filename' "${release_name}.zip"
 
+    - name: Plugin
+      shell: bash
+      run: |
+        command -v jprm
+
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
