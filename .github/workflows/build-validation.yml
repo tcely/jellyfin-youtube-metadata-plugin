@@ -63,7 +63,7 @@ jobs:
       run: |
         command -v pip
         pip install --user git+https://github.com/oddstr13/jellyfin-plugin-repository-manager
-        command -v jprm
+        declare -p PATH
         bash ./build_plugin.sh
 
     - uses: "marvinpinto/action-automatic-releases@latest"
