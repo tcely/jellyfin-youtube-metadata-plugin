@@ -33,7 +33,7 @@
 #
 
 MY=$(dirname $(realpath -s "${0}"))
-JPRM="jprm"
+JPRM="python3 -m jprm"
 
 PLUGIN=${1:-${PLUGIN:-.}}
 
