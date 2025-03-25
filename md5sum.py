@@ -27,7 +27,7 @@ def main(args):
         if path.is_file():
             file = path.resolve(strict=True)
             digest = md5(path)
-            line = f'{digest} *{file}'
+            line = f'{digest} *{file.name}'
             print(line, flush=True)
 
 
