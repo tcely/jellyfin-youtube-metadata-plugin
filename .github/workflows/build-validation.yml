@@ -92,6 +92,7 @@ jobs:
         tag_name: "${{ steps.create_package.outputs.release_tag }}"
         prerelease: true
         generate_release_notes: true
+        preserve_order: true
         files: |
           *SUMS
           *.zip
