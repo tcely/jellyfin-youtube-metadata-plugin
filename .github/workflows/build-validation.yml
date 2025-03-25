@@ -78,6 +78,11 @@ jobs:
           'filepath' "${PWD}/${_file#./}" \
           'filename' "${_file#./}"
 
+    - name: Checksums for `.zip` files
+      shell: bash
+      run: |
+        python3 md5sum.py *.zip | tee MD5SUMS
+
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -86,4 +91,5 @@ jobs:
         prerelease: true
           #          "${{ steps.create_package.outputs.filename }}"
         files: |
+          MD5SUMS
           *.zip
